@@ -1,5 +1,9 @@
 <template>
   <div class="hello">
+    <div class="bg-blue-500 text-white p-4 rounded">
+      <h1 class="text-xl font-bold">Hello, Tailwind CSS!</h1>
+    </div>
+    <v-btn color="primary">Click me</v-btn>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
