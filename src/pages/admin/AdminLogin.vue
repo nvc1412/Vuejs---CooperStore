@@ -1,11 +1,9 @@
 <template>
-  <router-view />
+  <h1>Admin Login</h1>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'App'
+  name: 'AdminLogin'
 };
 </script>
-
-<style></style>

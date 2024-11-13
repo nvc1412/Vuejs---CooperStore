@@ -1,11 +1,9 @@
 <template>
-  <router-view />
+  <h1>Admin Dashboard</h1>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'App'
+  name: 'AdminDashboard'
 };
 </script>
-
-<style></style>

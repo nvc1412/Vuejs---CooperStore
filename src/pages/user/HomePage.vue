@@ -1,11 +1,9 @@
 <template>
-  <router-view />
+  <h1>Home Page</h1>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'App'
+  name: 'HomePage'
 };
 </script>
-
-<style></style>

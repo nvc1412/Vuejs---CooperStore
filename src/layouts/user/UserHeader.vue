@@ -1,0 +1,15 @@
+<template>
+  <v-app-bar :elevation="10">
+    <template v-slot:prepend>
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    </template>
+
+    <v-app-bar-title>User Header</v-app-bar-title>
+  </v-app-bar>
+</template>
+
+<script lang="ts">
+export default {
+  name: 'UserHeader'
+};
+</script>
