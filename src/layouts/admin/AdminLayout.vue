@@ -1,14 +1,11 @@
 <template>
   <v-app>
+    <AdminHeader />
+
     <v-navigation-drawer app>
       <!-- Sidebar cho Admin -->
       <AdminSidebar />
     </v-navigation-drawer>
-
-    <v-app-bar app>
-      <!-- Header cho Admin -->
-      <AdminHeader />
-    </v-app-bar>
 
     <v-main>
       <router-view />
