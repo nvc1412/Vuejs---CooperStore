@@ -1,34 +1,51 @@
 <template>
-  <v-app>
-    <AdminHeader />
+  <v-card>
+    <v-layout class="rounded rounded-md d-flex">
+      <AdminSidebar :isMobile="isMobile" v-model="drawer" />
 
-    <v-navigation-drawer app>
-      <!-- Sidebar cho Admin -->
-      <AdminSidebar />
-    </v-navigation-drawer>
+      <v-main
+        class="d-flex align-center justify-center flex-column bg-content"
+        style="min-height: 2000px">
+        <AdminHeader :isMobile="isMobile" @openSidebar="openSidebar" />
 
-    <v-main>
-      <router-view />
-      <!-- Hiển thị nội dung của các trang con -->
-    </v-main>
-    <AdminFooter />
-  </v-app>
+        Main Content
+
+        <AdminFooter />
+      </v-main>
+    </v-layout>
+  </v-card>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import AdminSidebar from '@/layouts/admin/AdminSidebar.vue';
 import AdminHeader from '@/layouts/admin/AdminHeader.vue';
 import AdminFooter from '@/layouts/admin/AdminFooter.vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
-export default {
-  components: {
-    AdminSidebar,
-    AdminHeader,
-    AdminFooter
-  }
+const isMobile = ref(false);
+const drawer = ref(true);
+
+const checkIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768;
+  drawer.value = !isMobile.value;
 };
+
+const openSidebar = () => {
+  drawer.value = true;
+};
+
+onMounted(() => {
+  checkIsMobile();
+  window.addEventListener('resize', checkIsMobile);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkIsMobile);
+});
 </script>
 
-<style scoped>
-/* Các style cho layout admin nếu cần */
+<style>
+.v-navigation-drawer__content {
+  overflow-y: hidden !important;
+}
 </style>

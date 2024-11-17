@@ -1,29 +1,141 @@
 <template>
-  <v-card>
-    <v-layout>
-      <v-navigation-drawer
-        image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
-        theme="dark"
-        permanent>
-        <v-list nav>
-          <v-list-item prepend-icon="mdi-email" title="Inbox" value="inbox"></v-list-item>
+  <v-navigation-drawer
+    class="bg-menu overscroll-y-none"
+    v-model="drawer"
+    :rail="rail && !props.isMobile"
+    :temporary="props.isMobile"
+    :permanent="!props.isMobile"
+    @click="rail = false">
+    <v-list-item nav>
+      <template #prepend>
+        <v-icon class="-rotate-12" size="x-large" color="#fff">mdi-home</v-icon>
+      </template>
+      <template #title>
+        <h1 class="text-base font-bold uppercase">Cooper Store</h1>
+      </template>
+      <template v-slot:append>
+        <v-btn
+          v-if="!props.isMobile"
+          icon="mdi-menu"
+          variant="text"
+          @click.stop="rail = !rail"></v-btn>
+        <v-btn v-else icon="mdi-close" variant="text" @click="closeSidebar"></v-btn>
+      </template>
+    </v-list-item>
+
+    <v-divider></v-divider>
+
+    <v-list class="custom-scrollbar" density="compact" nav>
+      <v-list-item
+        class="py-4"
+        prepend-icon="mdi-chart-bar"
+        title="BÁO CÁO - THỐNG KÊ"
+        value="dashboard"
+        color="active" />
+      <v-list-item
+        class="py-4"
+        prepend-icon="mdi-view-list"
+        title="DANH MỤC"
+        value="category"
+        color="active" />
+      <v-list-item
+        class="py-4"
+        prepend-icon="mdi-tshirt-crew"
+        title="SẢN PHẨM"
+        value="product"
+        color="active" />
+
+      <v-list-group value="bill">
+        <template v-slot:activator="{ props }">
+          <v-list-item class="py-4" v-bind="props" prepend-icon="mdi-printer" title="ĐƠN HÀNG" />
+        </template>
+        <div class="bg-white rounded">
           <v-list-item
-            prepend-icon="mdi-account-supervisor-circle"
-            title="Supervisors"
-            value="supervisors"></v-list-item>
+            class="py-4"
+            title="TẤT CẢ ĐƠN HÀNG"
+            value="allBill"
+            color="primary"></v-list-item>
           <v-list-item
-            prepend-icon="mdi-clock-start"
-            title="Clock-in"
-            value="clockin"></v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-      <v-main style="height: 250px"></v-main>
-    </v-layout>
-  </v-card>
+            class="py-4"
+            title="CHƯA ĐƯỢC IN"
+            value="prepareBill"
+            color="primary"></v-list-item>
+        </div>
+      </v-list-group>
+
+      <v-list-item
+        class="py-4"
+        prepend-icon="mdi-comment"
+        title="ĐÁNH GIÁ"
+        value="rating"
+        color="active" />
+      <v-list-item
+        class="py-4"
+        prepend-icon="mdi-account-cog"
+        title="TÀI KHOẢN"
+        value="account"
+        color="active" />
+
+      <v-list-group value="setting">
+        <template v-slot:activator="{ props }">
+          <v-list-item class="py-4" v-bind="props" prepend-icon="mdi-cog" title="CẤU HÌNH" />
+        </template>
+        <div class="bg-white rounded">
+          <v-list-item class="py-4" title="BANNER" value="banner" color="primary"></v-list-item>
+          <v-list-item class="py-4" title="LOGO" value="logo" color="primary"></v-list-item>
+        </div>
+      </v-list-group>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'AdminSidebar'
+<script lang="ts" setup>
+import { ref, defineProps, defineEmits, watch } from 'vue';
+
+const props = defineProps({
+  modelValue: Boolean,
+  isMobile: Boolean
+});
+
+const drawer = ref(props.modelValue);
+const rail = ref(false);
+const emit = defineEmits(['update:modelValue']);
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    drawer.value = newValue;
+  }
+);
+
+watch(
+  () => drawer.value,
+  (newValue) => {
+    emit('update:modelValue', newValue);
+  }
+);
+
+const closeSidebar = () => {
+  drawer.value = false;
 };
 </script>
+
+<style scoped>
+.custom-scrollbar {
+  max-height: 670px;
+  overflow-y: hidden;
+}
+
+.custom-scrollbar:hover {
+  overflow-y: auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #dddce1;
+  border-radius: 4px;
+}
+</style>

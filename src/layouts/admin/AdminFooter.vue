@@ -1,11 +1,10 @@
 <template>
-  <v-footer class="bg-grey-lighten-1">
-    <v-row justify="center" no-gutters>
-      <v-col class="text-center mt-4" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Admin Footer</strong>
-      </v-col>
-    </v-row>
-  </v-footer>
+  <div class="h-100 d-flex align-center justify-md-space-between justify-center">
+    <span class="d-flex align-center">
+      Copyright &copy; Cooper Store
+      {{ new Date().getFullYear() }}
+    </span>
+  </div>
 </template>
 
 <script lang="ts">
