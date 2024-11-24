@@ -12,12 +12,12 @@ const vuetify = createVuetify({
       light: {
         colors: {
           primary: '#1E88E5',
-          secondary: '#D32F2F',
+          secondary: '#FF4C51',
           accent: '#FF4081',
           error: '#F44336',
-          info: '#2196F3',
-          success: '#4CAF50',
-          warning: '#FF9800',
+          info: '#16B1FF',
+          success: '#56CA00',
+          warning: '#FFB400',
           menu: '#2A4050',
           content: '#F4F5Fa',
           active: '#00FFFF'

@@ -15,7 +15,8 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admin/login',
     name: 'admin-login',
-    component: AdminLogin
+    component: AdminLogin,
+    meta: { title: 'Đăng nhập Admin' }
   },
   {
     path: '/',
@@ -33,4 +34,8 @@ const router = createRouter({
   routes
 });
 
+router.afterEach((to) => {
+  const title = (to.meta.title as string) || 'Cooper Store';
+  document.title = title;
+});
 export default router;

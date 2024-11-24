@@ -1,6 +1,6 @@
 <template>
   <v-app-bar scroll-behavior="hide elevate" scroll-threshold="10" class="px-6" color="content">
-    <template v-if="props.isMobile" v-slot:prepend>
+    <template v-if="isMobile" v-slot:prepend>
       <v-app-bar-nav-icon @click="$emit('openSidebar')" />
     </template>
     <template v-slot:append>
@@ -46,7 +46,7 @@
 import { defineProps } from 'vue';
 import AvatarDefault from '@/assets/images/avatars/avatar_default.png';
 
-const props = defineProps({
+defineProps({
   isMobile: Boolean
 });
 </script>

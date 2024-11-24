@@ -3,13 +3,11 @@
     <v-layout class="rounded rounded-md d-flex">
       <AdminSidebar :isMobile="isMobile" v-model="drawer" />
 
-      <v-main
-        class="d-flex align-center justify-center flex-column bg-content"
-        style="min-height: 2000px">
+      <v-main class="d-flex align-center justify-center flex-column bg-content min-h-screen">
         <AdminHeader :isMobile="isMobile" @openSidebar="openSidebar" />
-
-        Main Content
-
+        <div class="w-full px-6 h-full pt-3">
+          <RouterView />
+        </div>
         <AdminFooter />
       </v-main>
     </v-layout>

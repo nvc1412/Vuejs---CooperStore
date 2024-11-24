@@ -2,9 +2,9 @@
   <v-navigation-drawer
     class="bg-menu overscroll-y-none"
     v-model="drawer"
-    :rail="rail && !props.isMobile"
-    :temporary="props.isMobile"
-    :permanent="!props.isMobile"
+    :rail="rail && !isMobile"
+    :temporary="isMobile"
+    :permanent="!isMobile"
     @click="rail = false">
     <v-list-item nav>
       <template #prepend>
@@ -14,11 +14,7 @@
         <h1 class="text-base font-bold uppercase">Cooper Store</h1>
       </template>
       <template v-slot:append>
-        <v-btn
-          v-if="!props.isMobile"
-          icon="mdi-menu"
-          variant="text"
-          @click.stop="rail = !rail"></v-btn>
+        <v-btn v-if="!isMobile" icon="mdi-menu" variant="text" @click.stop="rail = !rail"></v-btn>
         <v-btn v-else icon="mdi-close" variant="text" @click="closeSidebar"></v-btn>
       </template>
     </v-list-item>
@@ -31,6 +27,8 @@
         prepend-icon="mdi-chart-bar"
         title="BÁO CÁO - THỐNG KÊ"
         value="dashboard"
+        to="/admin/dashboard"
+        :class="{ active: route.path === '/admin/dashboard' }"
         color="active" />
       <v-list-item
         class="py-4"
@@ -47,7 +45,12 @@
 
       <v-list-group value="bill">
         <template v-slot:activator="{ props }">
-          <v-list-item class="py-4" v-bind="props" prepend-icon="mdi-printer" title="ĐƠN HÀNG" />
+          <v-list-item
+            class="py-4"
+            v-bind="props"
+            prepend-icon="mdi-printer"
+            title="ĐƠN HÀNG"
+            color="active" />
         </template>
         <div class="bg-white rounded">
           <v-list-item
@@ -78,7 +81,12 @@
 
       <v-list-group value="setting">
         <template v-slot:activator="{ props }">
-          <v-list-item class="py-4" v-bind="props" prepend-icon="mdi-cog" title="CẤU HÌNH" />
+          <v-list-item
+            class="py-4"
+            v-bind="props"
+            prepend-icon="mdi-cog"
+            title="CẤU HÌNH"
+            color="active" />
         </template>
         <div class="bg-white rounded">
           <v-list-item class="py-4" title="BANNER" value="banner" color="primary"></v-list-item>
@@ -91,12 +99,14 @@
 
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 const props = defineProps({
   modelValue: Boolean,
   isMobile: Boolean
 });
 
+const route = useRoute();
 const drawer = ref(props.modelValue);
 const rail = ref(false);
 const emit = defineEmits(['update:modelValue']);
@@ -122,7 +132,7 @@ const closeSidebar = () => {
 
 <style scoped>
 .custom-scrollbar {
-  max-height: 670px;
+  max-height: 100vh;
   overflow-y: hidden;
 }
 

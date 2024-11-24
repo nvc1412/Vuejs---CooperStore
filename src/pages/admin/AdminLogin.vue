@@ -50,7 +50,7 @@
 
             <v-col cols="12" class="text-center">
               <v-btn block type="submit" color="white" outlined prepend-icon="mdi-google">
-                Đăng nhập bằng tài khoản google
+                Dùng tài khoản google
               </v-btn>
             </v-col>
           </v-row>
@@ -74,7 +74,7 @@ const form = ref({
 const isPasswordVisible = ref(false);
 const router = useRouter();
 const handleLogin = () => {
-  router.push('/admin');
+  router.push('/admin/dashboard');
 };
 </script>
 

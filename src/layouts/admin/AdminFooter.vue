@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100 d-flex align-center justify-md-space-between justify-center">
+  <div class="d-flex align-center justify-md-space-between justify-center py-5">
     <span class="d-flex align-center">
       Copyright &copy; Cooper Store
       {{ new Date().getFullYear() }}
@@ -7,8 +7,4 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'AdminFooter'
-};
-</script>
+<script setup lang="ts"></script>
