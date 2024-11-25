@@ -35,6 +35,8 @@
         prepend-icon="mdi-view-list"
         title="DANH MỤC"
         value="category"
+        to="/admin/category"
+        :class="{ active: route.path === '/admin/category' }"
         color="active" />
       <v-list-item
         class="py-4"
